@@ -27,10 +27,16 @@ click==8.0.1
     # via
     #   black
     #   pip-tools
+codecov==2.1.12
+    # via ormar-postgres-extensions
 colorama==0.4.4
     # via twine
 configparser==5.0.2
     # via py-githooks
+coverage[toml]==5.5
+    # via
+    #   codecov
+    #   ormar-postgres-extensions
 cryptography==3.4.7
     # via secretstorage
 databases[postgresql]==0.4.3
@@ -113,6 +119,7 @@ regex==2021.7.6
     # via black
 requests==2.26.0
     # via
+    #   codecov
     #   pygithub
     #   requests-toolbelt
     #   twine
@@ -133,7 +140,9 @@ sqlalchemy==1.3.23
     #   ormar
     #   ormar-postgres-extensions
 toml==0.10.2
-    # via pytest
+    # via
+    #   coverage
+    #   pytest
 tomli==1.2.0
     # via
     #   black

@@ -15,8 +15,8 @@ install_requires = [
     "sqlalchemy>=1.3.23,<2.0.0",
 ]
 test_requires = [
-    # "codecov",
-    # "coverage[toml]",
+    "codecov",
+    "coverage[toml]",
     "invoke",
     "pytest",
 ]
