@@ -1,43 +1,56 @@
-# New Project Kit
+# ormar-postgres-extensions
 
-## How to use this repository
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors) [![Maturity badge - level 1](https://img.shields.io/badge/Maturity-Level%201%20--%20New%20Project-yellow.svg)](https://github.com/tophat/getting-started/blob/master/scorecard.md) [![Stage](https://img.shields.io/pypi/status/ormar-postgres-extensions)](https://pypi.org/project/ormar-postgres-extensions/) [![Discord](https://img.shields.io/discord/809577721751142410?label=community%20chat)](https://discord.gg/YhK3GFcZrk)
 
-This repository covers some must-haves when starting a project so you don't have to. Things like setting up a basic CI configuration, a README, issue templates and whatnot. Simply clone it and fill it up with your project's files! Everything you find in here is a suggestion rather than a prescription; don't feel obligated to stick to the templated format! After all, every project is unique in its own right.
+[![Pypi](https://img.shields.io/pypi/v/ormar-postgres-extensions)](https://pypi.org/project/ormar-postgres-extensions/) [![Wheel](https://img.shields.io/pypi/wheel/ormar-postgres-extensions)](https://pypi.org/project/ormar-postgres-extensions/) ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/ormar-postgres-extensions) [![PyPI - Downloads](https://img.shields.io/pypi/dm/ormar-postgres-extensions)](https://pypi.org/project/ormar-postgres-extensions/) [![PyPI - License](https://img.shields.io/pypi/l/ormar-postgres-extensions)](./LICENSE)
 
-To get started, take out this __How to__ section, replace __New Project Kit__ with your project's name and fill up the README template below!
-
-__Nice-to-haves__
-- A lot of projects have __a nice logo__ that catches the eye and builds branding, feel free to add one to your project!
-- __Badges__ are a great way to visually represent the current state of your project, from CI to latest released versions.
-- Don't forget to add in a badge for your project's [Maturity Score](https://github.com/tophat/getting-started/blob/master/scorecard.md)!
-- __Screenshots or GIFs of your project in action__ can also be pretty cool to have in here!
+![Build Status](https://github.com/tophat/ormar-postgres-extensions/workflows/Ormar%20Postgres%20Extensions%20CICD/badge.svg) [![codecov](https://codecov.io/gh/tophat/ormar-postgres-extensions/branch/master/graph/badge.svg)](https://codecov.io/gh/tophat/ormar-postgres-extensions)
 
 ## Overview
 
-_At a high-level, what is your project about? What problem does it solve? This is the first thing people will see when landing on your repository, make it snappy!_
+ormar-postgres-extensions is a an extension to the[Ormar](https://github.com/collerek/ormar) ORM. It enables developers to write models that map to native PostgreSQL types.
 
 ## Motivation
 
-_This can be an extension of the Overview describing your problem space. It's a cool way to give an origin story to your project._
+[Ormar](https://github.com/collerek/ormar) is an amazing async ORM that works with [FastAPI](https://github.com/tiangolo/fastapi). However, it is agnostic to the underlying database used meaning that we cannot use native PostgreSQL types such as UUID or JSONB columns. The aim of this library is to provide Ormar fields that can be used to generate database columns with native PG types.
 
 ## Installation
 
-_How can users set up your project? Through npm/yarn? Through a manual installer and some cURL magic? Be as thorough as you can!_
+```shell
+python -m pip install ormar-postgres-extensions
+```
 
 ## Usage
 
-_Once installed, how can your users make it work?_
+### Fields
+
+Two native PG fields are provided. The `PostgresJSONB` and `PostgresUUID` types map to native `JSONB` and `UUID` data types respectively. Using these in an Ormar model is as simple as importing the fields and using them in the model.
+
+```python
+from uuid import UUID
+
+import ormar
+from ormar_postgres_extensions import PostgresUUID
+
+
+class MyModel(ormar.Model):
+    uid: UUID = PostgresUUID(unique=True, nullable=False)
+```
 
 ## Uninstalling
 
-_If there is a specific procedure to uninstall your project that isn't straightforward and/or well-defined, you should outline it here to avoid frustrations._
+```python
+pip uninstall ormar-postgres-extensions
+```
 
 ## Contributing
 
-_Instructions or guidelines on how to contribute are essential to any OSS project! You can easily split this off to a CONTRIBUTING document alongside the README, or keep it in here._
+Feel free to open a PR or GitHub issue. Contributions welcome!
 
-_In your contribution guide, you can outline best practices, how to set up a development environment that meets the needs of your project, and what the process is to get contributions merged._
+To develop locally, clone this repository and run `. script/bootstrap` to install test dependencies. You can then use `invoke --list` to see available commands.
+To run the tests locally, PostgreSQL needs to be running. This can be easily started via `inv database`.
 
+### See contributing [guide](https://github.com/tophat/ormar-postgres-extensions/tree/master/CONTRIBUTING.md)
 ## Contributors
 
 _You don't really have to add this section yourself! Simply use [all-contributors](https://allcontributors.org/) by adding comments in your PRs like so:_
@@ -49,10 +62,6 @@ _You don't really have to add this section yourself! Simply use [all-contributor
 _Find out more about All-Contributors on their website!_
 
 
-## Infrastructure and tooling
+## License
 
-It can be tremendously useful for both your maintainers and contributors to have tools within reach. Don't hesitate to rely on Docker if you need specific environments to test, develop or build in. Moreover, a well-crafted `Makefile` can streamline a lot of the common tasks that are part of your project's development cycle. Bonus: you can use those in CI!
-
-## Help make this starting kit better
-
-If you have any suggestions for ways we could make this starting kit better, please [open a documentation request](https://github.com/tophat/getting-started/issues/new?template=documentation_request.md)!
+`ormar-postgres-extensions` is licensed under [Apache License Version 2.0](https://github.com/tophat/ormar-postgres-extensions/tree/master/LICENSE).
