@@ -1,1 +1,4 @@
-from .fields import PostgresUUID  # noqa: F401
+from .fields import (  # noqa: F401
+    PostgresJSONB,
+    PostgresUUID,
+)
