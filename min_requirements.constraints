@@ -1,0 +1,4 @@
+databases[postgresql]==0.4.1
+ormar==0.10.15
+pydantic==1.8.2
+sqlalchemy==1.3.23
