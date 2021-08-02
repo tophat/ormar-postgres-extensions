@@ -18,7 +18,9 @@ test_requires = [
     "codecov",
     "coverage[toml]",
     "invoke",
+    "psycopg2-binary",
     "pytest",
+    "pytest-asyncio",
 ]
 dev_requires = [
     "black",
@@ -27,6 +29,7 @@ dev_requires = [
     "pip-tools",
     "py-githooks",
     "pygithub",
+    "semver",
     "twine",
     "wheel",
     *test_requires,
