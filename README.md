@@ -6,7 +6,7 @@
 
 [![Pypi](https://img.shields.io/pypi/v/ormar-postgres-extensions)](https://pypi.org/project/ormar-postgres-extensions/) [![Wheel](https://img.shields.io/pypi/wheel/ormar-postgres-extensions)](https://pypi.org/project/ormar-postgres-extensions/) ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/ormar-postgres-extensions) [![PyPI - Downloads](https://img.shields.io/pypi/dm/ormar-postgres-extensions)](https://pypi.org/project/ormar-postgres-extensions/) [![PyPI - License](https://img.shields.io/pypi/l/ormar-postgres-extensions)](./LICENSE)
 
-![Build Status](https://github.com/tophat/ormar-postgres-extensions/workflows/Ormar%20Postgres%20Extensions%20CICD/badge.svg) [![codecov](https://codecov.io/gh/tophat/ormar-postgres-extensions/branch/master/graph/badge.svg)](https://codecov.io/gh/tophat/ormar-postgres-extensions)
+![Build Status](https://github.com/tophat/ormar-postgres-extensions/workflows/Ormar%20Postgres%20Extensions%20CICD/badge.svg) [![codecov](https://codecov.io/gh/tophat/ormar-postgres-extensions/branch/main/graph/badge.svg)](https://codecov.io/gh/tophat/ormar-postgres-extensions)
 
 ## Overview
 
@@ -52,7 +52,7 @@ Feel free to open a PR or GitHub issue. Contributions welcome!
 To develop locally, clone this repository and run `. script/bootstrap` to install test dependencies. You can then use `invoke --list` to see available commands.
 To run the tests locally, PostgreSQL needs to be running. This can be easily started via `inv database`.
 
-### See contributing [guide](https://github.com/tophat/ormar-postgres-extensions/tree/master/CONTRIBUTING.md)
+### See contributing [guide](https://github.com/tophat/ormar-postgres-extensions/tree/main/CONTRIBUTING.md)
 ## Contributors
 
 _You don't really have to add this section yourself! Simply use [all-contributors](https://allcontributors.org/) by adding comments in your PRs like so:_
@@ -79,4 +79,4 @@ _Find out more about All-Contributors on their website!_
 
 ## License
 
-`ormar-postgres-extensions` is licensed under [Apache License Version 2.0](https://github.com/tophat/ormar-postgres-extensions/tree/master/LICENSE).
+`ormar-postgres-extensions` is licensed under [Apache License Version 2.0](https://github.com/tophat/ormar-postgres-extensions/tree/main/LICENSE).
