@@ -62,7 +62,7 @@ _You don't really have to add this section yourself! Simply use [all-contributor
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="http://everttimberg.io"><img src="https://avatars.githubusercontent.com/u/6757853?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Evert Timberg</b></sub></a><br /><a href="#ideas-etimberg" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="http://everttimberg.io"><img src="https://avatars.githubusercontent.com/u/6757853?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Evert Timberg</b></sub></a><br /><a href="#ideas-etimberg" title="Ideas, Planning, & Feedback">🤔</a> <a href="#infra-etimberg" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#maintenance-etimberg" title="Maintenance">🚧</a> <a href="https://github.com/tophat/ormar-postgres-extensions/commits?author=etimberg" title="Documentation">📖</a> <a href="https://github.com/tophat/ormar-postgres-extensions/commits?author=etimberg" title="Tests">⚠️</a></td>
   </tr>
 </table>
 
