@@ -1,0 +1,5 @@
+{
+    "prConcurrentLimit": 5,
+    "commitMessagePrefix": "chore: ",
+    "rangeStrategy": "replace"
+}
