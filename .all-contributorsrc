@@ -11,7 +11,11 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/6757853?v=4",
       "profile": "http://everttimberg.io",
       "contributions": [
-        "ideas"
+        "ideas",
+        "infra",
+        "maintenance",
+        "doc",
+        "test"
       ]
     }
   ],
