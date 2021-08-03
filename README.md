@@ -2,8 +2,7 @@
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
-
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors) [![Maturity badge - level 1](https://img.shields.io/badge/Maturity-Level%201%20--%20New%20Project-yellow.svg)](https://github.com/tophat/getting-started/blob/master/scorecard.md) [![Stage](https://img.shields.io/pypi/status/ormar-postgres-extensions)](https://pypi.org/project/ormar-postgres-extensions/) [![Discord](https://img.shields.io/discord/809577721751142410?label=community%20chat)](https://discord.gg/YhK3GFcZrk)
+[![Maturity badge - level 1](https://img.shields.io/badge/Maturity-Level%201%20--%20New%20Project-yellow.svg)](https://github.com/tophat/getting-started/blob/master/scorecard.md) [![Stage](https://img.shields.io/pypi/status/ormar-postgres-extensions)](https://pypi.org/project/ormar-postgres-extensions/) [![Discord](https://img.shields.io/discord/809577721751142410?label=community%20chat)](https://discord.gg/YhK3GFcZrk)
 
 [![Pypi](https://img.shields.io/pypi/v/ormar-postgres-extensions)](https://pypi.org/project/ormar-postgres-extensions/) [![Wheel](https://img.shields.io/pypi/wheel/ormar-postgres-extensions)](https://pypi.org/project/ormar-postgres-extensions/) ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/ormar-postgres-extensions) [![PyPI - Downloads](https://img.shields.io/pypi/dm/ormar-postgres-extensions)](https://pypi.org/project/ormar-postgres-extensions/) [![PyPI - License](https://img.shields.io/pypi/l/ormar-postgres-extensions)](./LICENSE)
 
