@@ -26,7 +26,7 @@ python -m pip install ormar-postgres-extensions
 
 ### Fields
 
-Two native PG fields are provided. The `JSONB` and `UUID` types map to native `JSONB` and `UUID` data types respectively. Using these in an Ormar model is as simple as importing the fields and using them in the model.
+Three native PG fields are provided. The `JSONB` and `UUID` types map to native `JSONB` and `UUID` data types respectively. The `Array` type can be used to create an array column. Using these in an Ormar model is as simple as importing the fields and using them in the model.
 
 ```python
 from uuid import UUID
@@ -37,6 +37,24 @@ from ormar_postgres_extensions import PostgresUUID
 
 class MyModel(ormar.Model):
     uid: UUID = PostgresUUID(unique=True, nullable=False)
+```
+
+#### Array Fields
+
+Array fields require a bit more setup to pass the type of the array into the field
+
+```python
+import ormar
+import sqlalchemy
+from ormar_postgres_extensions import PostgresUUID
+
+class ModelWithArray(ormar.Model):
+    class Meta:
+        database = database
+        metadata = metadata
+
+    id: int = ormar.Integer(primary_key=True)
+    data: list = Array(item_type=sqlalchemy.String())
 ```
 
 ## Uninstalling
