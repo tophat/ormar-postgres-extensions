@@ -9,7 +9,7 @@ class PostgresJSONBTypeDecorator(TypeDecorator):
     impl = postgresql.JSONB
 
 
-class PostgresJSONB(ormar.JSON):
+class JSONB(ormar.JSON):
     """
     Custom JSON field uses a native PG JSONB type
     """

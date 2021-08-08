@@ -1,2 +1,2 @@
-from .jsonb import PostgresJSONB  # noqa: F401
-from .uuid import PostgresUUID  # noqa: F401
+from .jsonb import JSONB  # noqa: F401
+from .uuid import UUID  # noqa: F401

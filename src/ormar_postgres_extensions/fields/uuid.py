@@ -39,7 +39,7 @@ class PostgresUUIDTypeDecorator(TypeDecorator):
         return value
 
 
-class PostgresUUID(ormar.UUID):
+class UUID(ormar.UUID):
     """
     Custom UUID field for the schema that uses a native PG UUID type
     """
