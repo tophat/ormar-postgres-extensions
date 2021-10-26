@@ -10,7 +10,6 @@ class PostgresArrayTypeDecorator(TypeDecorator):
     impl = postgresql.ARRAY
 
     def __init__(self, item_type, *args, **kwargs):
-        print(f"{item_type} {args} {kwargs}")
         super().__init__(item_type, *args, **kwargs)
         self._item_type = item_type
 

@@ -46,7 +46,7 @@ Array fields require a bit more setup to pass the type of the array into the fie
 ```python
 import ormar
 import sqlalchemy
-from ormar_postgres_extensions import PostgresUUID
+from ormar_postgres_extensions import Array
 
 class ModelWithArray(ormar.Model):
     class Meta:
