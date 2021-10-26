@@ -24,15 +24,7 @@ class Array(ormar.fields.model_fields.ModelFieldFactory, list):
     def __new__(  # type: ignore
         cls, *, item_type, **kwargs: Any
     ) -> ormar.fields.BaseField:
-        kwargs = {
-            **kwargs,
-            **{
-                k: v
-                for k, v in locals().items()
-                if k not in ["cls", "__class__", "kwargs"]
-            },
-        }
-        return super().__new__(cls, **kwargs)
+        return super().__new__(cls, **{**kwargs, "item_type": item_type})
 
     @classmethod
     def get_column_type(cls, **kwargs: Any) -> PostgresArrayTypeDecorator:
