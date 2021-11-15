@@ -26,7 +26,7 @@ python -m pip install ormar-postgres-extensions
 
 ### Fields
 
-Two native PG fields are provided. The `PostgresJSONB` and `PostgresUUID` types map to native `JSONB` and `UUID` data types respectively. Using these in an Ormar model is as simple as importing the fields and using them in the model.
+Two native PG fields are provided. The `JSONB` and `UUID` types map to native `JSONB` and `UUID` data types respectively. Using these in an Ormar model is as simple as importing the fields and using them in the model.
 
 ```python
 from uuid import UUID

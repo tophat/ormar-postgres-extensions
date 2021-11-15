@@ -4,7 +4,7 @@ from typing import Optional
 import ormar
 import pytest
 
-from ormar_postgres_extensions.fields import PostgresJSONB
+from ormar_postgres_extensions.fields import JSONB
 from tests.database import (
     database,
     metadata,
@@ -17,7 +17,7 @@ class JSONBTestModel(ormar.Model):
         metadata = metadata
 
     id: int = ormar.Integer(primary_key=True)
-    data: dict = PostgresJSONB()
+    data: dict = JSONB()
 
 
 class NullableJSONBTestModel(ormar.Model):
@@ -26,7 +26,7 @@ class NullableJSONBTestModel(ormar.Model):
         metadata = metadata
 
     id: int = ormar.Integer(primary_key=True)
-    data: Optional[dict] = PostgresJSONB(nullable=True)
+    data: Optional[dict] = JSONB(nullable=True)
 
 
 @pytest.mark.asyncio
