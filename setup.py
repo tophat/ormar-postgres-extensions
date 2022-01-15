@@ -6,7 +6,7 @@ from setuptools import (
     setup,
 )
 
-python_requires = ">=3.6"
+python_requires = ">=3.8"
 setup_requires = ["setuptools_scm"]
 install_requires = [
     "databases[postgresql]>=0.5.4,<1.0.0",
@@ -35,8 +35,8 @@ dev_requires = [
     *test_requires,
 ]
 
-if sys.version_info < (3, 6):
-    raise RuntimeError("Only Python 3.6+ supported.")
+if sys.version_info < (3, 8):
+    raise RuntimeError("Only Python 3.8+ supported.")
 
 
 def readme() -> str:
@@ -78,8 +78,6 @@ if __name__ in ["__main__", "builtins"]:
             "Intended Audience :: Developers",
             "Operating System :: OS Independent",
             "Programming Language :: Python :: 3",
-            "Programming Language :: Python :: 3.6",
-            "Programming Language :: Python :: 3.7",
             "Programming Language :: Python :: 3.8",
             "Programming Language :: Python :: 3.9",
             "Programming Language :: Python :: 3.10",
