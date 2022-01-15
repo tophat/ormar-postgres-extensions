@@ -57,6 +57,38 @@ class ModelWithArray(ormar.Model):
     data: list = Array(item_type=sqlalchemy.String())
 ```
 
+Arrays have access to three special methods that map to specific PostgreSQL array functions
+
+##### array_contained_by
+
+The maps to the [`contained_by`](https://docs.sqlalchemy.org/en/14/dialects/postgresql.html#sqlalchemy.dialects.postgresql.ARRAY.Comparator.contained_by) operator in Postgres.
+
+```python
+await ModelWithArray.objects.filter(
+  ModelWithArray.data.array_contained_by(["a"])
+).all()
+```
+
+##### array_contains
+
+The maps to the [`contains`](https://docs.sqlalchemy.org/en/14/dialects/postgresql.html#sqlalchemy.dialects.postgresql.ARRAY.Comparator.contains) operator in Postgres.
+
+```python
+await ModelWithArray.objects.filter(
+  ModelWithArray.data.array_contains(["a"])
+).all()
+```
+
+##### array_overlap
+
+The maps to the [`overlap`](https://docs.sqlalchemy.org/en/14/dialects/postgresql.html#sqlalchemy.dialects.postgresql.ARRAY.Comparator.overlap) operator in Postgres.
+
+```python
+await ModelWithArray.objects.filter(
+  ModelWithArray.data.array_overlap(["a"])
+).all()
+```
+
 ## Uninstalling
 
 ```python
