@@ -21,7 +21,7 @@ def array_contains(self, other: Any) -> ormar.queryset.clause.FilterGroup:
 
 def array_contained_by(self, other: Any) -> ormar.queryset.clause.FilterGroup:
     """
-    works as postgresql `column @> ARRAY[<VALUE>]`
+    works as postgresql `column <@ ARRAY[<VALUE>]`
 
     :param other: value to check against operator
     :type other: Any
@@ -33,7 +33,7 @@ def array_contained_by(self, other: Any) -> ormar.queryset.clause.FilterGroup:
 
 def array_overlap(self, other: Any) -> ormar.queryset.clause.FilterGroup:
     """
-    works as postgresql `column @> ARRAY[<VALUE>]`
+    works as postgresql `column && ARRAY[<VALUE>]`
 
     :param other: value to check against operator
     :type other: Any
