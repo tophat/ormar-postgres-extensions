@@ -1,0 +1,10 @@
+name: Question
+description: Have a question about ormar-postgres-extensions?
+labels: ["question"]
+body:
+  - type: textarea
+    attributes:
+      label: What is your question?
+      description: Please read the documentation before asking your question.
+    validations:
+      required: true
