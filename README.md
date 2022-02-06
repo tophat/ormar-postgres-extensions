@@ -26,7 +26,7 @@ python -m pip install ormar-postgres-extensions
 
 ### Fields
 
-Two native PG fields are provided. The `JSONB` and `UUID` types map to native `JSONB` and `UUID` data types respectively. Using these in an Ormar model is as simple as importing the fields and using them in the model.
+Three native PG fields are provided. The `JSONB` and `UUID` types map to native `JSONB` and `UUID` data types respectively. The `Array` type can be used to create an array column. Using these in an Ormar model is as simple as importing the fields and using them in the model.
 
 ```python
 from uuid import UUID
@@ -37,6 +37,56 @@ from ormar_postgres_extensions import PostgresUUID
 
 class MyModel(ormar.Model):
     uid: UUID = PostgresUUID(unique=True, nullable=False)
+```
+
+#### Array Fields
+
+Array fields require a bit more setup to pass the type of the array into the field
+
+```python
+import ormar
+import sqlalchemy
+from ormar_postgres_extensions import Array
+
+class ModelWithArray(ormar.Model):
+    class Meta:
+        database = database
+        metadata = metadata
+
+    id: int = ormar.Integer(primary_key=True)
+    data: list = Array(item_type=sqlalchemy.String())
+```
+
+Arrays have access to three special methods that map to specific PostgreSQL array functions
+
+##### array_contained_by
+
+The maps to the [`contained_by`](https://docs.sqlalchemy.org/en/14/dialects/postgresql.html#sqlalchemy.dialects.postgresql.ARRAY.Comparator.contained_by) operator in Postgres.
+
+```python
+await ModelWithArray.objects.filter(
+  ModelWithArray.data.array_contained_by(["a"])
+).all()
+```
+
+##### array_contains
+
+The maps to the [`contains`](https://docs.sqlalchemy.org/en/14/dialects/postgresql.html#sqlalchemy.dialects.postgresql.ARRAY.Comparator.contains) operator in Postgres.
+
+```python
+await ModelWithArray.objects.filter(
+  ModelWithArray.data.array_contains(["a"])
+).all()
+```
+
+##### array_overlap
+
+The maps to the [`overlap`](https://docs.sqlalchemy.org/en/14/dialects/postgresql.html#sqlalchemy.dialects.postgresql.ARRAY.Comparator.overlap) operator in Postgres.
+
+```python
+await ModelWithArray.objects.filter(
+  ModelWithArray.data.array_overlap(["a"])
+).all()
 ```
 
 ## Uninstalling

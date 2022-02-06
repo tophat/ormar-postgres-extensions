@@ -6,13 +6,13 @@ from setuptools import (
     setup,
 )
 
-python_requires = ">=3.6"
+python_requires = ">=3.8"
 setup_requires = ["setuptools_scm"]
 install_requires = [
-    "databases[postgresql]>=0.4.1,<1.0.0",
-    "ormar>=0.10.15,<1.0.0",
-    "pydantic>=1.8.2,<2.0.0",
-    "sqlalchemy>=1.3.23,<2.0.0",
+    "databases[postgresql]>=0.5.4,<1.0.0",
+    "ormar>=0.10.24,<1.0.0",
+    "pydantic>=1.9.0,<2.0.0",
+    "sqlalchemy>=1.4.29,<2.0.0",
 ]
 test_requires = [
     "codecov",
@@ -35,8 +35,8 @@ dev_requires = [
     *test_requires,
 ]
 
-if sys.version_info < (3, 6):
-    raise RuntimeError("Only Python 3.6+ supported.")
+if sys.version_info < (3, 8):
+    raise RuntimeError("Only Python 3.8+ supported.")
 
 
 def readme() -> str:
@@ -78,8 +78,6 @@ if __name__ in ["__main__", "builtins"]:
             "Intended Audience :: Developers",
             "Operating System :: OS Independent",
             "Programming Language :: Python :: 3",
-            "Programming Language :: Python :: 3.6",
-            "Programming Language :: Python :: 3.7",
             "Programming Language :: Python :: 3.8",
             "Programming Language :: Python :: 3.9",
             "Programming Language :: Python :: 3.10",
