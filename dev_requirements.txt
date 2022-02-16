@@ -11,7 +11,7 @@ asyncpg==0.25.0
     # via databases
 attrs==21.4.0
     # via pytest
-black==21.12b0
+black==22.1.0
     # via ormar-postgres-extensions
 bleach==4.1.0
     # via readme-renderer
