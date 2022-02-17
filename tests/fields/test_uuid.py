@@ -7,7 +7,7 @@ from uuid import (
 import ormar
 import pytest
 
-from ormar_postgres_extensions.fields import UUID as UUIDField
+import ormar_postgres_extensions as ormar_pg_ext
 from tests.database import (
     database,
     metadata,
@@ -20,7 +20,7 @@ class UUIDTestModel(ormar.Model):
         metadata = metadata
 
     id: int = ormar.Integer(primary_key=True)
-    uid: UUID = UUIDField(default=uuid4)
+    uid: UUID = ormar_pg_ext.UUID(default=uuid4)
 
 
 class NullableUUIDTestModel(ormar.Model):
@@ -29,7 +29,7 @@ class NullableUUIDTestModel(ormar.Model):
         metadata = metadata
 
     id: int = ormar.Integer(primary_key=True)
-    uid: Optional[UUID] = UUIDField(nullable=True)
+    uid: Optional[UUID] = ormar_pg_ext.UUID(nullable=True)
 
 
 @pytest.mark.asyncio

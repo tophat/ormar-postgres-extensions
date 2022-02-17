@@ -28,25 +28,35 @@ python -m pip install ormar-postgres-extensions
 
 Three native PG fields are provided. The `JSONB` and `UUID` types map to native `JSONB` and `UUID` data types respectively. The `Array` type can be used to create an array column. Using these in an Ormar model is as simple as importing the fields and using them in the model.
 
+#### UUID
+
 ```python
 from uuid import UUID
 
 import ormar
-from ormar_postgres_extensions import PostgresUUID
+import ormar_postgres_extensions as ormar_pg_ext
 
 
 class MyModel(ormar.Model):
-    uid: UUID = PostgresUUID(unique=True, nullable=False)
+    uuid: UUID = ormar_pg_ext.UUID(unique=True, nullable=False)
 ```
+#### JSONB
+```python
+import ormar
+import ormar_postgres_extensions as ormar_pg_ext
 
-#### Array Fields
+class JSONBTestModel(ormar.Model):
+    id: int = ormar.Integer(primary_key=True)
+    data: dict = ormar_pg_ext.JSONB()
+```
+#### Array
 
-Array fields require a bit more setup to pass the type of the array into the field
+Array field requires a bit more setup to pass the type of the array into the field
 
 ```python
 import ormar
 import sqlalchemy
-from ormar_postgres_extensions import Array
+import ormar_postgres_extensions as ormar_pg_ext
 
 class ModelWithArray(ormar.Model):
     class Meta:
@@ -54,7 +64,7 @@ class ModelWithArray(ormar.Model):
         metadata = metadata
 
     id: int = ormar.Integer(primary_key=True)
-    data: list = Array(item_type=sqlalchemy.String())
+    data: list = ormar_pg_ext.ARRAY(item_type=sqlalchemy.String())
 ```
 
 Arrays have access to three special methods that map to specific PostgreSQL array functions
@@ -64,9 +74,7 @@ Arrays have access to three special methods that map to specific PostgreSQL arra
 The maps to the [`contained_by`](https://docs.sqlalchemy.org/en/14/dialects/postgresql.html#sqlalchemy.dialects.postgresql.ARRAY.Comparator.contained_by) operator in Postgres.
 
 ```python
-await ModelWithArray.objects.filter(
-  ModelWithArray.data.array_contained_by(["a"])
-).all()
+await ModelWithArray.objects.filter(data__array_contained_by=["a"]).all()
 ```
 
 ##### array_contains
@@ -74,9 +82,7 @@ await ModelWithArray.objects.filter(
 The maps to the [`contains`](https://docs.sqlalchemy.org/en/14/dialects/postgresql.html#sqlalchemy.dialects.postgresql.ARRAY.Comparator.contains) operator in Postgres.
 
 ```python
-await ModelWithArray.objects.filter(
-  ModelWithArray.data.array_contains(["a"])
-).all()
+await ModelWithArray.objects.filter(data__array_contains=["a"]).all()
 ```
 
 ##### array_overlap
@@ -84,9 +90,7 @@ await ModelWithArray.objects.filter(
 The maps to the [`overlap`](https://docs.sqlalchemy.org/en/14/dialects/postgresql.html#sqlalchemy.dialects.postgresql.ARRAY.Comparator.overlap) operator in Postgres.
 
 ```python
-await ModelWithArray.objects.filter(
-  ModelWithArray.data.array_overlap(["a"])
-).all()
+await ModelWithArray.objects.filter(data__array_overlap=["a"]).all()
 ```
 
 ## Uninstalling
