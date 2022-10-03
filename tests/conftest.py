@@ -1,4 +1,5 @@
 import pytest
+import pytest_asyncio
 import sqlalchemy
 
 from .database import (
@@ -12,7 +13,8 @@ from .database import (
 @pytest.fixture()
 def root_engine():
     root_engine = sqlalchemy.create_engine(
-        str(DATABASE_URL.replace(database="postgres")), isolation_level="AUTOCOMMIT"
+        str(DATABASE_URL.replace(database="postgres", scheme="postgresql")),
+        isolation_level="AUTOCOMMIT",
     )
     return root_engine
 
@@ -30,10 +32,11 @@ def test_database(root_engine):
         root_engine.execute(f'DROP DATABASE "{DB_NAME}"')
 
 
-@pytest.fixture()
+@pytest_asyncio.fixture
 async def db(test_database):
     # Ensure the DB has the schema we need for testing
-    engine = sqlalchemy.create_engine(str(DATABASE_URL))
+    # We need to use the postgresql scheme here because this uses the synchronous driver
+    engine = sqlalchemy.create_engine(str(DATABASE_URL.replace(scheme="postgresql")))
     metadata.create_all(engine)
     engine.dispose()
 
