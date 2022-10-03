@@ -50,6 +50,14 @@ class JSONBTestModel(ormar.Model):
     data: dict = ormar_pg_ext.JSONB()
 ```
 
+##### jsonb_contained_by
+
+The maps to the [`contains`](https://docs.sqlalchemy.org/en/14/dialects/postgresql.html#sqlalchemy.dialects.postgresql.JSONB.Comparator.contained_by) operator in Postgres.
+
+```python
+await JSONBTestModel.objects.filter(data__jsonb_contained_by=dict(key="value")).all()
+```
+
 ##### jsonb_contains
 
 The maps to the [`contains`](https://docs.sqlalchemy.org/en/14/dialects/postgresql.html#sqlalchemy.dialects.postgresql.JSONB.Comparator.contains) operator in Postgres.

@@ -100,3 +100,24 @@ async def test_contains_array_text(db):
 
     found = await JSONBTestModel.objects.filter(data__jsonb_contains="4").all()
     assert len(found) == 0
+
+
+@pytest.mark.asyncio
+async def test_contained_by(db):
+    await JSONBTestModel(data=json.dumps(dict(key1="foo"))).save()
+    await JSONBTestModel(data=json.dumps(dict(key2="bar"))).save()
+
+    found = await JSONBTestModel.objects.filter(
+        data__jsonb_contained_by=dict(key1="foo")
+    ).all()
+    assert len(found) == 1
+
+    found = await JSONBTestModel.objects.filter(
+        data__jsonb_contained_by=dict(key1="foo", key2="bar")
+    ).all()
+    assert len(found) == 2
+
+    found = await JSONBTestModel.objects.filter(
+        data__jsonb_contains=dict(key1="bar")
+    ).all()
+    assert len(found) == 0
