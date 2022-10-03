@@ -49,6 +49,15 @@ class JSONBTestModel(ormar.Model):
     id: int = ormar.Integer(primary_key=True)
     data: dict = ormar_pg_ext.JSONB()
 ```
+
+##### jsonb_contains
+
+The maps to the [`contains`](https://docs.sqlalchemy.org/en/14/dialects/postgresql.html#sqlalchemy.dialects.postgresql.JSONB.Comparator.contains) operator in Postgres.
+
+```python
+await JSONBTestModel.objects.filter(data__jsonb_contains=dict(key="value")).all()
+```
+
 #### Array
 
 Array field requires a bit more setup to pass the type of the array into the field

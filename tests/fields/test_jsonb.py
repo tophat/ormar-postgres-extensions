@@ -46,3 +46,57 @@ async def test_create_model_with_nullable_jsonb(db):
 
     found = await NullableJSONBTestModel.objects.get()
     assert found.data is None
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(
+    "value1, value2, value3",
+    [
+        # Test with some JSON primitives
+        ("value1", "value2", "value3"),
+        (1, 2, 3),
+        (True, False, None),
+        # Verifies that matches with NULL work
+        (True, None, False),
+    ],
+)
+async def test_contains(db, value1, value2, value3):
+    await JSONBTestModel(data=json.dumps(dict(key=value1))).save()
+    await JSONBTestModel(data=json.dumps(dict(key=value2))).save()
+
+    found = await JSONBTestModel.objects.filter(
+        data__jsonb_contains=dict(key=value2)
+    ).all()
+    assert len(found) == 1
+
+    found = await JSONBTestModel.objects.filter(
+        data__jsonb_contains=dict(key=value3)
+    ).all()
+    assert len(found) == 0
+
+
+@pytest.mark.asyncio
+async def test_contains_array(db):
+    await JSONBTestModel(data=json.dumps([1, 2])).save()
+    await JSONBTestModel(data=json.dumps([1, 3])).save()
+
+    found = await JSONBTestModel.objects.filter(data__jsonb_contains=[1]).all()
+    assert len(found) == 2
+
+    found = await JSONBTestModel.objects.filter(data__jsonb_contains=[1, 2]).all()
+    assert len(found) == 1
+
+    found = await JSONBTestModel.objects.filter(data__jsonb_contains=[4]).all()
+    assert len(found) == 0
+
+
+@pytest.mark.asyncio
+async def test_contains_array_text(db):
+    await JSONBTestModel(data=json.dumps([1, 2])).save()
+    await JSONBTestModel(data=json.dumps([1, 3])).save()
+
+    found = await JSONBTestModel.objects.filter(data__jsonb_contains="1").all()
+    assert len(found) == 2
+
+    found = await JSONBTestModel.objects.filter(data__jsonb_contains="4").all()
+    assert len(found) == 0
