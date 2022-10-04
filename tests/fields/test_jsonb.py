@@ -146,6 +146,27 @@ async def test_has_all(db):
 
 
 @pytest.mark.asyncio
+async def test_has_any(db):
+    await JSONBTestModel(data=json.dumps(dict(key1="foo", key3=2))).save()
+    await JSONBTestModel(data=json.dumps(dict(key2="bar"))).save()
+
+    found = await JSONBTestModel.objects.filter(
+        data__jsonb_has_any=array(["key1"])
+    ).all()
+    assert len(found) == 1
+
+    found = await JSONBTestModel.objects.filter(
+        data__jsonb_has_any=array(["key1", "key3"])
+    ).all()
+    assert len(found) == 1
+
+    found = await JSONBTestModel.objects.filter(
+        data__jsonb_has_any=array(["key1", "key2"])
+    ).all()
+    assert len(found) == 2
+
+
+@pytest.mark.asyncio
 async def test_has_key_object(db):
     await JSONBTestModel(data=json.dumps(dict(key1="foo"))).save()
     await JSONBTestModel(data=json.dumps(dict(key2="bar"))).save()

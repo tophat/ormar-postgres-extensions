@@ -37,6 +37,17 @@ def jsonb_has_all(self, other: Any) -> ormar.queryset.clause.FilterGroup:
     return self._select_operator(op="jsonb_has_all", other=other)
 
 
+def jsonb_has_any(self, other: Any) -> ormar.queryset.clause.FilterGroup:
+    """
+    works as postgresql `column ?| VALUE::jsonb`
+    :param other: value to check against operator
+    :type other: Any
+    :return: FilterGroup for operator
+    :rtype: ormar.queryset.clause.FilterGroup
+    """
+    return self._select_operator(op="jsonb_has_any", other=other)
+
+
 def jsonb_has_key(self, other: Any) -> ormar.queryset.clause.FilterGroup:
     """
     works as postgresql `column ? VALUE::jsonb`
@@ -53,6 +64,7 @@ FIELD_ACCESSOR_MAP = [
     ("jsonb_contained_by", jsonb_contained_by),
     ("jsonb_contains", jsonb_contains),
     ("jsonb_has_all", jsonb_has_all),
+    ("jsonb_has_any", jsonb_has_any),
     ("jsonb_has_key", jsonb_has_key),
 ]
 
@@ -67,6 +79,7 @@ ACCESSOR_MAP = [
     ("jsonb_contained_by", "contained_by"),
     ("jsonb_contains", "contains"),
     ("jsonb_has_all", "has_all"),
+    ("jsonb_has_any", "has_any"),
     ("jsonb_has_key", "has_key"),
 ]
 
