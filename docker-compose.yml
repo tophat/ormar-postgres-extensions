@@ -1,7 +1,7 @@
 version: '3.6'
 services:
   postgres:
-    image: postgres:13
+    image: postgres:14
     environment:
       POSTGRES_USER: DEV_USER
       POSTGRES_PASSWORD: DEV_PASSWORD
