@@ -66,6 +66,14 @@ The maps to the [`contains`](https://docs.sqlalchemy.org/en/14/dialects/postgres
 await JSONBTestModel.objects.filter(data__jsonb_contains=dict(key="value")).all()
 ```
 
+##### jsonb_has_key
+
+The maps to the [`has_key`](https://docs.sqlalchemy.org/en/14/dialects/postgresql.html#sqlalchemy.dialects.postgresql.JSONB.Comparator.has_key) operator in Postgres.
+
+```python
+await JSONBTestModel.objects.filter(data__jsonb_has_key="key1").all()
+```
+
 #### Array
 
 Array field requires a bit more setup to pass the type of the array into the field

@@ -121,3 +121,27 @@ async def test_contained_by(db):
         data__jsonb_contains=dict(key1="bar")
     ).all()
     assert len(found) == 0
+
+
+@pytest.mark.asyncio
+async def test_has_key_object(db):
+    await JSONBTestModel(data=json.dumps(dict(key1="foo"))).save()
+    await JSONBTestModel(data=json.dumps(dict(key2="bar"))).save()
+
+    found = await JSONBTestModel.objects.filter(data__jsonb_has_key="key1").all()
+    assert len(found) == 1
+
+    found = await JSONBTestModel.objects.filter(data__jsonb_has_key="key3").all()
+    assert len(found) == 0
+
+
+@pytest.mark.asyncio
+async def test_has_key_array(db):
+    await JSONBTestModel(data=json.dumps(["foo"])).save()
+    await JSONBTestModel(data=json.dumps(["bar"])).save()
+
+    found = await JSONBTestModel.objects.filter(data__jsonb_has_key="foo").all()
+    assert len(found) == 1
+
+    found = await JSONBTestModel.objects.filter(data__jsonb_has_key="other").all()
+    assert len(found) == 0

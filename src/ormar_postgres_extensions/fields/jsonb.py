@@ -26,10 +26,22 @@ def jsonb_contains(self, other: Any) -> ormar.queryset.clause.FilterGroup:
     return self._select_operator(op="jsonb_contains", other=other)
 
 
+def jsonb_has_key(self, other: Any) -> ormar.queryset.clause.FilterGroup:
+    """
+    works as postgresql `column ? VALUE::jsonb`
+    :param other: value to check against operator
+    :type other: Any
+    :return: FilterGroup for operator
+    :rtype: ormar.queryset.clause.FilterGroup
+    """
+    return self._select_operator(op="jsonb_has_key", other=other)
+
+
 # Need to patch the filter objects to support JSONB specifc actions
 FIELD_ACCESSOR_MAP = [
     ("jsonb_contained_by", jsonb_contained_by),
     ("jsonb_contains", jsonb_contains),
+    ("jsonb_has_key", jsonb_has_key),
 ]
 
 
@@ -42,6 +54,7 @@ for (method_name, method) in FIELD_ACCESSOR_MAP:
 ACCESSOR_MAP = [
     ("jsonb_contained_by", "contained_by"),
     ("jsonb_contains", "contains"),
+    ("jsonb_has_key", "has_key"),
 ]
 
 for (ormar_operation, pg_operation) in ACCESSOR_MAP:
