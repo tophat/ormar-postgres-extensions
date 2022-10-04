@@ -3,6 +3,7 @@ from typing import Optional
 
 import ormar
 import pytest
+from sqlalchemy.dialects.postgresql import array
 
 import ormar_postgres_extensions as ormar_pg_ext
 from tests.database import (
@@ -121,6 +122,27 @@ async def test_contained_by(db):
         data__jsonb_contains=dict(key1="bar")
     ).all()
     assert len(found) == 0
+
+
+@pytest.mark.asyncio
+async def test_has_all(db):
+    await JSONBTestModel(data=json.dumps(dict(key1="foo", key3=2))).save()
+    await JSONBTestModel(data=json.dumps(dict(key2="bar"))).save()
+
+    found = await JSONBTestModel.objects.filter(
+        data__jsonb_has_all=array(["key1"])
+    ).all()
+    assert len(found) == 1
+
+    found = await JSONBTestModel.objects.filter(
+        data__jsonb_has_all=array(["key1", "key2"])
+    ).all()
+    assert len(found) == 0
+
+    found = await JSONBTestModel.objects.filter(
+        data__jsonb_has_all=array(["key1", "key3"])
+    ).all()
+    assert len(found) == 1
 
 
 @pytest.mark.asyncio
