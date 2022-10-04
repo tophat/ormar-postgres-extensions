@@ -71,7 +71,7 @@ await JSONBTestModel.objects.filter(data__jsonb_contains=dict(key="value")).all(
 The maps to the [`has_all`](https://docs.sqlalchemy.org/en/14/dialects/postgresql.html#sqlalchemy.dialects.postgresql.JSONB.Comparator.has_all) operator in Postgres.
 
 ```python
-from sqlalchemy.dialects.postgres import array
+from sqlalchemy.dialects.postgresql import array
 
 await JSONBTestModel.objects.filter(data__jsonb_has_all=array(["key1", "key2"])).all()
 ```
@@ -81,7 +81,7 @@ await JSONBTestModel.objects.filter(data__jsonb_has_all=array(["key1", "key2"]))
 The maps to the [`has_any`](https://docs.sqlalchemy.org/en/14/dialects/postgresql.html#sqlalchemy.dialects.postgresql.JSONB.Comparator.has_any) operator in Postgres.
 
 ```python
-from sqlalchemy.dialects.postgres import array
+from sqlalchemy.dialects.postgresql import array
 
 await JSONBTestModel.objects.filter(data__jsonb_has_any=array(["key1", "key2"])).all()
 ```
