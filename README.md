@@ -49,6 +49,51 @@ class JSONBTestModel(ormar.Model):
     id: int = ormar.Integer(primary_key=True)
     data: dict = ormar_pg_ext.JSONB()
 ```
+
+##### jsonb_contained_by
+
+The maps to the [`contains`](https://docs.sqlalchemy.org/en/14/dialects/postgresql.html#sqlalchemy.dialects.postgresql.JSONB.Comparator.contained_by) operator in Postgres.
+
+```python
+await JSONBTestModel.objects.filter(data__jsonb_contained_by=dict(key="value")).all()
+```
+
+##### jsonb_contains
+
+The maps to the [`contains`](https://docs.sqlalchemy.org/en/14/dialects/postgresql.html#sqlalchemy.dialects.postgresql.JSONB.Comparator.contains) operator in Postgres.
+
+```python
+await JSONBTestModel.objects.filter(data__jsonb_contains=dict(key="value")).all()
+```
+
+##### jsonb_has_all
+
+The maps to the [`has_all`](https://docs.sqlalchemy.org/en/14/dialects/postgresql.html#sqlalchemy.dialects.postgresql.JSONB.Comparator.has_all) operator in Postgres.
+
+```python
+from sqlalchemy.dialects.postgres import array
+
+await JSONBTestModel.objects.filter(data__jsonb_has_all=array(["key1", "key2"])).all()
+```
+
+##### jsonb_has_any
+
+The maps to the [`has_any`](https://docs.sqlalchemy.org/en/14/dialects/postgresql.html#sqlalchemy.dialects.postgresql.JSONB.Comparator.has_any) operator in Postgres.
+
+```python
+from sqlalchemy.dialects.postgres import array
+
+await JSONBTestModel.objects.filter(data__jsonb_has_any=array(["key1", "key2"])).all()
+```
+
+##### jsonb_has_key
+
+The maps to the [`has_key`](https://docs.sqlalchemy.org/en/14/dialects/postgresql.html#sqlalchemy.dialects.postgresql.JSONB.Comparator.has_key) operator in Postgres.
+
+```python
+await JSONBTestModel.objects.filter(data__jsonb_has_key="key1").all()
+```
+
 #### Array
 
 Array field requires a bit more setup to pass the type of the array into the field
