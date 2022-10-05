@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 From v1.0.0 onwards, this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Pre-v1, breaking changes are indicated via a minor release, while all other changes fall under patches. At any time, you can see what's in progress for a version by filtering GitHub issues by milestone.
 
+# [2.3.0](https://github.com/tophat/ormar-postgres-extensions/compare/v2.2.0...v2.3.0) (2022-10-05)
+
+
+### Features
+
+* CIDR type ([da8280b](https://github.com/tophat/ormar-postgres-extensions/commit/da8280ba71868fc313feca31ada5d919cd5b1468))
+* INET type ([c3d2e16](https://github.com/tophat/ormar-postgres-extensions/commit/c3d2e16c4aa0cd23fb403043791629c4c01abcc8))
+* MACADDR type ([553ee71](https://github.com/tophat/ormar-postgres-extensions/commit/553ee71e76ab3e3e35262241f144a833dbae561c))
+
 # [2.2.0](https://github.com/tophat/ormar-postgres-extensions/compare/v2.1.0...v2.2.0) (2022-10-04)
 
 
