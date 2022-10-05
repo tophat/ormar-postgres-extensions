@@ -139,7 +139,7 @@ await ModelWithArray.objects.filter(data__array_overlap=["a"]).all()
 ```
 
 
-#### INET
+#### INET / CIDR
 
 ```python
 from ipaddress import IPv4Address, IPv6Address, IPv4Interface, IPv6Interface
@@ -157,7 +157,8 @@ IPAddress = Union[
 
 class INETTestModel(ormar.Model):
     id: int = ormar.Integer(primary_key=True)
-    inet: IPAddress = ormar_pg_ext.JSONB()
+    inet: IPAddress = ormar_pg_ext.INET()
+    cidr: IPAddress = ormar_pg_ext.CIDR()
 ```
 
 ##### contained_by
