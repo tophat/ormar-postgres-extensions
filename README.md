@@ -138,6 +138,73 @@ The maps to the [`overlap`](https://docs.sqlalchemy.org/en/14/dialects/postgresq
 await ModelWithArray.objects.filter(data__array_overlap=["a"]).all()
 ```
 
+
+#### INET
+
+```python
+from ipaddress import IPv4Address, IPv6Address, IPv4Interface, IPv6Interface
+from typing import Union
+
+import ormar
+import ormar_postgres_extensions as ormar_pg_ext
+
+IPAddress = Union[
+    IPv4Address,
+    IPv4Interface,
+    IPv6Address,
+    IPv6Interface,
+]
+
+class INETTestModel(ormar.Model):
+    id: int = ormar.Integer(primary_key=True)
+    inet: IPAddress = ormar_pg_ext.JSONB()
+```
+
+##### contained_by
+
+This maps to the [`<<` operator](https://www.postgresql.org/docs/current/functions-net.html)
+
+```python
+from ipaddress import ip_interface
+await INETTestModel.objects.filter(inet__contained_by=ip_interface("192.168.1.0/24")).all()
+```
+
+##### contained_by_eq
+
+This maps to the [`<<=` operator](https://www.postgresql.org/docs/current/functions-net.html)
+
+```python
+from ipaddress import ip_interface
+await INETTestModel.objects.filter(inet__contained_by_eq=ip_interface("192.168.1.0/24")).all()
+```
+
+##### contains_subnet
+
+This maps to the [`>>` operator](https://www.postgresql.org/docs/current/functions-net.html)
+
+```python
+from ipaddress import ip_interface
+await INETTestModel.objects.filter(inet__contains_subnet=ip_interface("192.168.1.0/24")).all()
+```
+
+##### contains_subnet_eq
+
+This maps to the [`>>=` operator](https://www.postgresql.org/docs/current/functions-net.html)
+
+```python
+from ipaddress import ip_interface
+await INETTestModel.objects.filter(inet__contains_subnet_eq=ip_interface("192.168.1.0/24")).all()
+```
+
+##### contains_or_eq
+
+This maps to the [`&&` operator](https://www.postgresql.org/docs/current/functions-net.html)
+
+```python
+from ipaddress import ip_interface
+await INETTestModel.objects.filter(inet__contains_or_eq=ip_interface("192.168.1.0/24")).all()
+```
+
 ## Uninstalling
 
 ```python
