@@ -205,6 +205,20 @@ from ipaddress import ip_interface
 await INETTestModel.objects.filter(inet__contains_or_eq=ip_interface("192.168.1.0/24")).all()
 ```
 
+#### MACADDR
+
+```python
+from ipaddress import IPv4Address, IPv6Address, IPv4Interface, IPv6Interface
+from typing import Union
+
+import ormar
+import ormar_postgres_extensions as ormar_pg_ext
+
+class MacAddrTestModel(ormar.Model):
+    id: int = ormar.Integer(primary_key=True)
+    addr: str = ormar_pg_ext.MACADDR()
+```
+
 ## Uninstalling
 
 ```python
