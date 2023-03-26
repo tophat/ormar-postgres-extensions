@@ -37,7 +37,7 @@ coverage[toml]==6.5.0
     # via
     #   codecov
     #   ormar-postgres-extensions
-cryptography==38.0.1
+cryptography==38.0.4
     # via secretstorage
 databases[postgresql]==0.6.1
     # via
