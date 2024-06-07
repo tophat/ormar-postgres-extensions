@@ -11,7 +11,7 @@ setup_requires = ["setuptools_scm"]
 install_requires = [
     "databases[postgresql]>=0.5.4,<1.0.0",
     "ormar>=0.10.24,<1.0.0",
-    "pydantic>=1.9.0,<2.0.0",
+    "pydantic>=1.9.0",
     "sqlalchemy>=1.4.29,<2.0.0",
 ]
 test_requires = [
